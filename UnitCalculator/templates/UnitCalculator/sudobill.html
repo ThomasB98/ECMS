@@ -1,0 +1,12 @@
+{% extends 'base.html'%}
+<br />
+{% block title%}SUDOBILL{% endblock %}
+<br />
+{% load crispy_forms_tags %} {% block content%}
+<h2>SudoBill</h2>
+<p>Enter Daily Uses Hours Of Devices</p>
+<form method="post">
+  {% csrf_token %}{{form|crispy}}
+  <button type="submit" class="btn btn-success">Add Working</button>
+</form>
+{% endblock%}

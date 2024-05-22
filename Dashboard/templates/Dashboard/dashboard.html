@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% load static %}
+<br />
+{% block title %}Dashboard{% endblock %}
+<br />
+{% block content %}
+<p style="font-weight: bold;">Daily usage hours</p>
+<div class="row">
+  {% for bill in bills %}
+  <div class="col">
+    <div class="card mt-2" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">{{bill.Date}}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Total hours :{{bill.totalAmount}}</li>
+        <li class="list-group-item">
+          Devices/ hours keep on{{bill.dynamic_data}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endfor %} {% endblock %}

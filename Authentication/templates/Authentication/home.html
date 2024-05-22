@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% load static %}
+<br />
+{% block title%} Home Page {% endblock %}
+<br />
+{% block content%}
+<div class="row">
+  {% for post in posts %}
+  <div class="col">
+    <div class="card mt-2" style="width: 18rem">
+      <img src="{% static 'fan.gif' %}" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{post.DeviceName}}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Watt:{{post.Watt}}</li>
+        <li class="list-group-item">Manufacturer:{{post.manufacturer}}</li>
+        <li class="list-group-item">Model:{{post.Model}}</li>
+      </ul>
+      <div class="card-body">
+        {% if user == post.author %}
+        <form method="post">
+          {% csrf_token %}
+          <button
+            type="submit"
+            class="btn btn-success start-button"
+            name="post-start"
+            value="{{post.id}}"
+          >
+            Start
+          </button>
+          <button
+            type="submit"
+            class="btn btn-danger stop-button"
+            name="post-end"
+            value="{{post.id}}"
+            disabled
+          >
+            Stop
+          </button>
+          <button
+            type="submit"
+            class="btn btn-dark"
+            name="post-id"
+            value="{{post.id}}"
+          >
+            Delete
+          </button>
+        </form>
+        {% endif %}
+      </div>
+      <div class="card-footer">
+        <span class="timer">00:00</span>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %} {% endblock %}
